@@ -2,11 +2,12 @@
     <div class="logo">
         <img ng-src="{{logoPath}}">
     </div>
+    {{test}}
     <div class="record">
         <h1> Wins: {{teamData.wins}} Losses: {{teamData.losses}} </h1>
     </div>
-    <div class="btn" ng-click="submitGame"> Add a New Game </div>
-    <form ng-show="$__FIXME__$" class="form">
+    <div class="btn" ng-click="toggleNewGameForm()"> Add a New Game </div>
+    <form ng-show="showNewGameForm" class="form">
         <span class="large"> Opponent: </span>
         <br />
         <select ng-model="$__FIXME__$" ng-options="team for team in teams" class="form-control" required name="team"></select>
