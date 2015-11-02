@@ -4,16 +4,14 @@ var app = angular.module('nbaRoutes');
 app.controller('teamCtrl', function ($scope, $stateParams, teamService, teamData) {
 
     // controller code
-    
-    $scope.test = 'hello!!!'
-    
-    $scope.teamData = teamData;
 
-    $scope.newGame = {
-        homeTeam: $scope.homeTeam.split(' ').join('').toLowerCase()
-    };
+    $scope.teamData = teamData;
+    console.log(teamData);
+
+    $scope.newGame = {};
 
     $scope.showNewGameForm = false;
+   
 
     $scope.toggleNewGameForm = function () {
         $scope.showNewGameForm = !$scope.showNewGameForm;
@@ -31,9 +29,9 @@ app.controller('teamCtrl', function ($scope, $stateParams, teamService, teamData
     }
 
     $scope.submitGame = function () {
+        $scope.newGame.homeTeam = $scope.homeTeam.split(' ').join('').toLowerCase();
         teamService.addNewGame($scope.newGame).then(function () {
             teamService.getTeamData($scope.newGame.homeTeam).then(function (data) {
-                console.log(data);
                 $scope.teamData = data;
                 $scope.newGame = {};
                 $scope.showNewGameForm = false;
